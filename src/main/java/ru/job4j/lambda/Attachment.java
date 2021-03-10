@@ -1,5 +1,9 @@
 package ru.job4j.lambda;
 
+import ru.job4j.bank.User;
+
+import java.util.Objects;
+
 public class Attachment {
     private final String names;
     private final int size;
@@ -23,5 +27,22 @@ public class Attachment {
                 + "name='" + names + '\''
                 + ", size=" + size
                 + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Attachment attachment = (Attachment) o;
+        return Objects.equals(names, attachment.names);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(names);
     }
 }
