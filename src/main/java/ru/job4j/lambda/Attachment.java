@@ -1,7 +1,5 @@
 package ru.job4j.lambda;
 
-import ru.job4j.bank.User;
-
 import java.util.Objects;
 
 public class Attachment {
@@ -19,14 +17,6 @@ public class Attachment {
 
     public int getSize() {
         return size;
-    }
-
-    @Override
-    public String toString() {
-        return "{"
-                + "name='" + names + '\''
-                + ", size=" + size
-                + '}';
     }
 
     @Override
