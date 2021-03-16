@@ -3,6 +3,7 @@ package ru.job4j.stream;
 import java.util.Objects;
 
 public class Address {
+
     private final String city;
     private final String street;
     private final int home;
@@ -13,6 +14,10 @@ public class Address {
         this.street = street;
         this.home = home;
         this.apartment = apartment;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     @Override
