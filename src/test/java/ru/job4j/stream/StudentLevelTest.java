@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class StudentLevelTest {
 
@@ -25,7 +25,7 @@ public class StudentLevelTest {
     @Test
     public void whenOnlyNull() {
         List<Student> input = new ArrayList<>();
-        input.add( null);
+        input.add(null);
         List<Student> expected = List.of();
         assertThat(StudentLevel.levelOf(input, 100), is(expected));
     }
@@ -33,7 +33,7 @@ public class StudentLevelTest {
     @Test
     public void whenHasNull() {
         List<Student> input = new ArrayList<>();
-        input.add( null);
+        input.add(null);
         input.add(new Student(28, "Pety"));
         List<Student> expected = List.of(new Student(28, "Pety"));
         assertThat(StudentLevel.levelOf(input, 10), is(expected));
