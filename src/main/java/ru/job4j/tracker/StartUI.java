@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +35,12 @@ public class StartUI {
 
     public static void main(String[] args) {
         Output out = new ConsoleOutput();
+        Item item = new Item("admin", 1);
+        final LocalDateTime created = item.getCreated();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-EE-yyyy HH:mm:ss");
+        String createdFormat = created.format(formatter);
+        out.println("Текущие дата и время: " + createdFormat);
+
         Input input = new ValidateInput(out, new ConsoleInput());
         Tracker tracker = new Tracker();
         List<UserAction> actions = new ArrayList<>();
@@ -43,7 +51,7 @@ public class StartUI {
         actions.add(new FindByIdAction(out));
         actions.add(new FindByNameAction(out));
         actions.add(new ExitAction());
-
         new StartUI(out).init(input, tracker, actions);
     }
 }
+
