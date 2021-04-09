@@ -39,7 +39,7 @@ public class StartUI {
         final LocalDateTime created = item.getCreated();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-EE-yyyy HH:mm:ss");
         String createdFormat = created.format(formatter);
-        out.println("Текущие дата и время: " + createdFormat);
+        out.println("Текущие дата и время: " + "\n" + createdFormat + "\n");
 
         Input input = new ValidateInput(out, new ConsoleInput());
         Tracker tracker = new Tracker();
