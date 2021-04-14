@@ -50,7 +50,7 @@ public class StartUI {
         actions.add(new DeleteAction(out));
         actions.add(new FindByIdAction(out));
         actions.add(new FindByNameAction(out));
-        actions.add(new ExitAction());
+        actions.add(new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
     }
 }
