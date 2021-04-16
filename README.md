@@ -22,4 +22,6 @@
 4. Отображать список всех заявок.
 5. Производить поиск по имени заявки.
 
+![img](./img/img.png)
+
 ![AJIEKCanderG github stats](https://github-readme-stats.vercel.app/api?username=AJIEKCanderG&hide=stars,prs,issues,contribs)
