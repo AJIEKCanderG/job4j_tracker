@@ -20,7 +20,7 @@ public class DeleteAction implements UserAction {
         if (rls) {
             out.println("Item with id=" + id + " was deleted" + "\n");
         } else {
-            out.println("Item with id=" + id + " not found" + "\n");
+            out.println("Error delete" + "\n");
         }
         return true;
     }
