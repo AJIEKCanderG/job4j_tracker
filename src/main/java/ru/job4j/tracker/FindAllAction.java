@@ -18,9 +18,13 @@ public class FindAllAction implements UserAction {
     public boolean execute(Input input, Tracker tracker) {
         out.println("=== Show all items ====");
         List<Item> items = tracker.findAll();
-        for (Item item : items) {
-            out.println(item);
-        }
+        if (items.size() > 0) {
+            for (Item item : items) {
+                out.println(item);
+            }
+        } else {
+                out.println("Repository does not contain a request items" + "\n");
+            }
         return true;
     }
 }

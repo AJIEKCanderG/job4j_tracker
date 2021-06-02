@@ -23,7 +23,7 @@ public class StartUITest {
         actions.add(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator()
+                "Menu:" + System.lineSeparator()
                         + "0. Exit"
                         + System.lineSeparator()
                         + "=== Good bye !!! ===="
@@ -82,11 +82,11 @@ public class StartUITest {
         actions.add(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator()
+                "Menu:" + System.lineSeparator()
                         + "0. Show all items" + System.lineSeparator()
                         + "1. Exit" + System.lineSeparator()
                         + "=== Show all items ====" + System.lineSeparator()
-                        + "Menu." + System.lineSeparator()
+                        + "Menu:" + System.lineSeparator()
                         + "0. Show all items" + System.lineSeparator()
                         + "1. Exit" + System.lineSeparator()
                         + "=== Good bye !!! ===="
@@ -103,15 +103,14 @@ public class StartUITest {
         List<UserAction> actions = new ArrayList<>();
         actions.add(new FindByIdAction(out));
         actions.add(new ExitAction(out));
-
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator()
+                "Menu:" + System.lineSeparator()
                         + "0. Find item by Id" + System.lineSeparator()
                         + "1. Exit" + System.lineSeparator()
                         + "=== Find item by Id ====" + System.lineSeparator()
-                        + item + System.lineSeparator()
-                        + "Menu." + System.lineSeparator()
+                        + "Found by your request " + item + System.lineSeparator()
+                        + "Menu:" + System.lineSeparator()
                         + "0. Find item by Id" + System.lineSeparator()
                         + "1. Exit" + System.lineSeparator()
                         + "=== Good bye !!! ===="
@@ -123,19 +122,19 @@ public class StartUITest {
     public void whenFindByNameAction() {
         Tracker tracker = new Tracker();
         Output out = new StubOutput();
-        Item item = tracker.add(new Item("Find item by name"));
-        Input in = new StubInput(new String[]{"0", String.valueOf(item.getId()), "1"});
+        Item item = tracker.add(new Item("New"));
+        Input in = new StubInput(new String[]{"0", String.valueOf(item.getName()), "1"});
         List<UserAction> actions = new ArrayList<>();
         actions.add(new FindByNameAction(out));
         actions.add(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator()
+                "Menu:" + System.lineSeparator()
                         + "0. Find item by name" + System.lineSeparator()
                         + "1. Exit" + System.lineSeparator()
                         + "=== Find item by name ====" + System.lineSeparator()
-                        + "Заявка с таким id не найдена" + System.lineSeparator()
-                        + "Menu." + System.lineSeparator()
+                        + "Found by your request " + item + System.lineSeparator()
+                        + "Menu:" + System.lineSeparator()
                         + "0. Find item by name" + System.lineSeparator()
                         + "1. Exit" + System.lineSeparator()
                         + "=== Good bye !!! ===="
@@ -155,10 +154,10 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 String.format(
-                        "Menu.%n"
+                        "Menu:%n"
                                 + "0. Exit%n"
                                 + "Wrong input, you can select: 0 .. 0%n"
-                                + "Menu.%n"
+                                + "Menu:%n"
                                 + "0. Exit%n"
                                 + "=== Good bye !!! ====%n"
                 )

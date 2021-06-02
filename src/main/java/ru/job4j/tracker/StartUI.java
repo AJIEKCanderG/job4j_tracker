@@ -27,7 +27,7 @@ public class StartUI {
     }
 
     private void showMenu(List<UserAction> actions) {
-        out.println("Menu.");
+        out.println("Menu:");
         for (int index = 0; index < actions.size(); index++) {
             out.println(index + ". " + actions.get(index).name());
         }
@@ -40,7 +40,6 @@ public class StartUI {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-EE-yyyy HH:mm:ss");
         String createdFormat = created.format(formatter);
         out.println("Текущие дата и время: " + "\n" + createdFormat + "\n");
-
         Input input = new ValidateInput(out, new ConsoleInput());
         Tracker tracker = new Tracker();
         List<UserAction> actions = new ArrayList<>();
