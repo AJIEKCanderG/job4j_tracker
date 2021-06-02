@@ -86,6 +86,7 @@ public class StartUITest {
                         + "0. Show all items" + System.lineSeparator()
                         + "1. Exit" + System.lineSeparator()
                         + "=== Show all items ====" + System.lineSeparator()
+                        + "Repository does not contain a request items" + "\n" + System.lineSeparator()
                         + "Menu:" + System.lineSeparator()
                         + "0. Show all items" + System.lineSeparator()
                         + "1. Exit" + System.lineSeparator()

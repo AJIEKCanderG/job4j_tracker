@@ -22,7 +22,7 @@ public class ReplaceAction implements UserAction {
         if (rls) {
             out.println("Item with id=" + id + " was replaced name: " + item + "\n");
         } else {
-            out.println("Item with id=" + id + " not found" + "\n");
+            out.println("Error replace" + "\n");
         }
         return true;
     }
