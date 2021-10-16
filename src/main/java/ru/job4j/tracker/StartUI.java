@@ -26,7 +26,7 @@ public class StartUI {
         this.out = out;
     }
 
-    public void init(Input input, Tracker tracker, List<UserAction> actions) {
+    public void init(Input input, Store tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
@@ -55,7 +55,7 @@ public class StartUI {
         String createdFormat = created.format(formatter);
         out.println("Текущие дата и время: " + "\n" + createdFormat + "\n");
         Input input = new ValidateInput(out, new ConsoleInput());
-        Tracker tracker = new Tracker();
+        var tracker = new MemTracker();
         List<UserAction> actions = new ArrayList<>();
         actions.add(new CreateAction(out));
         actions.add(new FindAllAction(out));

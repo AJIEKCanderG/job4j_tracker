@@ -1,8 +1,9 @@
 package ru.job4j.tracker.action;
 
+import ru.job4j.tracker.MemTracker;
+import ru.job4j.tracker.Store;
 import ru.job4j.tracker.io.Input;
 import ru.job4j.tracker.io.Output;
-import ru.job4j.tracker.Tracker;
 
 public class DeleteAction implements UserAction {
     private final Output out;
@@ -17,7 +18,7 @@ public class DeleteAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         out.println("=== Delete item ====");
         int id = Integer.parseInt(input.askStr("Enter id: "));
         boolean rls = tracker.delete(id);
