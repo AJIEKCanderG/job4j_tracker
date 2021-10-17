@@ -12,8 +12,6 @@ import java.util.Properties;
 
 public class SqlTracker implements Store {
     private Connection cn;
-    private final List<Item> items = new ArrayList<>();
-    private int ids = 1;
 
     public void init() {
         try (InputStream in = SqlTracker.class.
@@ -126,7 +124,7 @@ public class SqlTracker implements Store {
         try (var statement = cn.prepareStatement(sql)) {
             statement.setInt(1, id);
             try (var rslKey = statement.executeQuery()) {
-                while (rslKey.next()) {
+                if (rslKey.next()) {
                     item = new Item(
                             rslKey.getString("name"),
                             rslKey.getInt("id")
