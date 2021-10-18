@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.store.Store;
+
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +14,11 @@ import java.util.Properties;
  */
 
 public class SqlTracker implements Store {
-    private Connection cn;
+    private Connection connection;
+
+    public SqlTracker(Connection connection) {
+        this.connection = connection;
+    }
 
     public void init() {
         try (InputStream in = SqlTracker.class.
@@ -19,7 +26,7 @@ public class SqlTracker implements Store {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
-            cn = DriverManager.getConnection(
+            connection = DriverManager.getConnection(
                     config.getProperty("url"),
                     config.getProperty("username"),
                     config.getProperty("password")
@@ -31,15 +38,15 @@ public class SqlTracker implements Store {
 
     @Override
     public void close() throws Exception {
-        if (cn != null) {
-            cn.close();
+        if (connection != null) {
+            connection.close();
         }
     }
 
     @Override
     public Item add(Item item) {
         String sql = "Insert into items(name) values(?)";
-        try (var statement = cn.prepareStatement(sql, Statement
+        try (var statement = connection.prepareStatement(sql, Statement
                 .RETURN_GENERATED_KEYS)) {
             statement.setString(1, item.getName());
             statement.execute();
@@ -58,7 +65,7 @@ public class SqlTracker implements Store {
     public boolean replace(int id, Item item) {
         boolean rsl = false;
         var sql = "update items set name = ? where id = ?";
-        try (var statement = cn.prepareStatement(sql)) {
+        try (var statement = connection.prepareStatement(sql)) {
             statement.setString(1, item.getName());
             statement.setInt(2, id);
             rsl = statement.executeUpdate() > 0;
@@ -72,7 +79,7 @@ public class SqlTracker implements Store {
     public boolean delete(int id) {
         var rsl = false;
         var sql = "delete from items where id = ?";
-        try (var statement = cn.prepareStatement(sql)) {
+        try (var statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             rsl = statement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -85,7 +92,7 @@ public class SqlTracker implements Store {
     public List<Item> findAll() {
         List<Item> rsl = new ArrayList<>();
         var sql = "select * from items";
-        try (var statement = cn.prepareStatement(sql)) {
+        try (var statement = connection.prepareStatement(sql)) {
             try (var resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     rsl.add(new Item(resultSet.getString("name"), resultSet.getInt("id")
@@ -102,7 +109,7 @@ public class SqlTracker implements Store {
     public List<Item> findByName(String key) {
         List<Item> rsl = new ArrayList<>();
         var sql = "select * from items where name = ?";
-        try (var statement = cn.prepareStatement(sql)) {
+        try (var statement = connection.prepareStatement(sql)) {
             statement.setString(1, key);
             try (var rslKey = statement.executeQuery()) {
                 while (rslKey.next()) {
@@ -121,7 +128,7 @@ public class SqlTracker implements Store {
     public Item findById(int id) {
         var sql = "select * from items where id = ?";
         Item item = null;
-        try (var statement = cn.prepareStatement(sql)) {
+        try (var statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             try (var rslKey = statement.executeQuery()) {
                 if (rslKey.next()) {
