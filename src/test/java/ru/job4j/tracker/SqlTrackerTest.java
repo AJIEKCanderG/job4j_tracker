@@ -89,7 +89,7 @@ public class SqlTrackerTest {
     }
 
     @Test
-    public void whenAddItemsThenFindItByName() {
+    public void whenAddItemsAndThenFindItByName() {
         var tracker = new SqlTracker(connection);
         tracker.add(new Item("item1", 0));
         tracker.add(new Item("item2", 0));

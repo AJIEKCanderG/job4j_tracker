@@ -1,0 +1,16 @@
+2021-10-17 23:29:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "ITEMS" не найдена
+Table "ITEMS" not found; SQL statement:
+Insert into items(name) values(?) [42102-200]
+2021-10-17 23:29:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "ITEMS" не найдена
+Table "ITEMS" not found; SQL statement:
+select * from items where id = ? [42102-200]
+2021-10-17 23:29:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "ITEMS" не найдена
+Table "ITEMS" not found; SQL statement:
+delete from items [42102-200]
+2021-10-17 23:30:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "DATABASECHANGELOGLOCK" не найдена
+Table "DATABASECHANGELOGLOCK" not found; SQL statement:
+SELECT COUNT(*) FROM DATABASECHANGELOGLOCK [42102-200]
