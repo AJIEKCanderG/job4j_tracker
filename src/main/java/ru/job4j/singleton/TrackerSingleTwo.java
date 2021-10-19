@@ -1,6 +1,6 @@
 package ru.job4j.singleton;
 
-import ru.job4j.tracker.MemTracker;
+import ru.job4j.tracker.store.MemTracker;
 
 public class TrackerSingleTwo {
     private static MemTracker instance;

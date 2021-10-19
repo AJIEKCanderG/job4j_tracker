@@ -1,18 +1,10 @@
 package ru.job4j.tracker;
 
-import ru.job4j.tracker.action.ExitAction;
-import ru.job4j.tracker.action.UserAction;
-import ru.job4j.tracker.action.CreateAction;
-import ru.job4j.tracker.action.DeleteAction;
-import ru.job4j.tracker.action.FindAllAction;
-import ru.job4j.tracker.action.FindByIdAction;
-import ru.job4j.tracker.action.FindByNameAction;
-import ru.job4j.tracker.action.ReplaceAction;
-import ru.job4j.tracker.io.Input;
-import ru.job4j.tracker.io.Output;
-import ru.job4j.tracker.io.ConsoleInput;
-import ru.job4j.tracker.io.ConsoleOutput;
-import ru.job4j.tracker.io.ValidateInput;
+import ru.job4j.tracker.action.*;
+import ru.job4j.tracker.io.*;
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.store.MemTracker;
+import ru.job4j.tracker.store.Store;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -49,7 +41,7 @@ public class StartUI {
 
     public static void main(String[] args) {
         Output out = new ConsoleOutput();
-        Item item = new Item("admin", 1);
+        Item item = new Item(1, "admin");
         final LocalDateTime created = item.getCreated();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-EE-yyyy HH:mm:ss");
         String createdFormat = created.format(formatter);

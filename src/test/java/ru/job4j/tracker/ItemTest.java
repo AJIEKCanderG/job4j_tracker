@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.model.Item;
 import ru.job4j.tracker.sort.SortByIdItem;
 import ru.job4j.tracker.sort.SortByIdItemReverse;
 import ru.job4j.tracker.sort.SortByNameItem;
@@ -78,8 +79,8 @@ public class ItemTest {
     public void whenById1lessId2() {
         Comparator<Item> cmpName = new SortByIdItem();
         int rsl = cmpName.compare(
-                new Item("Petr", 1),
-                new Item("Ivan", 2)
+                new Item(1, "Petr"),
+                new Item(2, "Ivan")
         );
         assertThat(rsl, lessThan(0));
     }
@@ -88,8 +89,8 @@ public class ItemTest {
     public void whenById12lessId1() {
         Comparator<Item> cmpName = new SortByIdItem();
         int rsl = cmpName.compare(
-                new Item("Petr", 3),
-                new Item("Bob", 2)
+                new Item(3, "Petr"),
+                new Item(2, "Bob")
         );
         assertThat(rsl, greaterThan(0));
     }
@@ -98,8 +99,8 @@ public class ItemTest {
     public void whenById1equalId2() {
         Comparator<Item> cmpName = new SortByIdItem();
         int rsl = cmpName.compare(
-                new Item("Petr", 1),
-                new Item("Bob", 1)
+                new Item(1, "Petr"),
+                new Item(1, "Bob")
         );
         assertThat(rsl, equalTo(0));
     }
@@ -108,8 +109,8 @@ public class ItemTest {
     public void whenById1lessId2Reverse() {
         Comparator<Item> cmpName = new SortByIdItemReverse();
         int rsl = cmpName.compare(
-                new Item("Petr", 1),
-                new Item("Ivan", 2)
+                new Item(1, "Petr"),
+                new Item(2, "Ivan")
         );
         assertThat(rsl, greaterThan(0));
     }
@@ -118,8 +119,8 @@ public class ItemTest {
     public void whenById12lessId1Reverse() {
         Comparator<Item> cmpName = new SortByIdItemReverse();
         int rsl = cmpName.compare(
-                new Item("Petr", 3),
-                new Item("Bob", 2)
+                new Item(3, "Petr"),
+                new Item(2, "Bob")
         );
         assertThat(rsl, lessThan(0));
     }
@@ -128,8 +129,8 @@ public class ItemTest {
     public void whenById1equalId2Reverse() {
         Comparator<Item> cmpName = new SortByIdItemReverse();
         int rsl = cmpName.compare(
-                new Item("Petr", 1),
-                new Item("Bob", 1)
+                new Item(1, "Petr"),
+                new Item(1, "Bob")
         );
         assertThat(rsl, equalTo(0));
     }
