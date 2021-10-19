@@ -5,12 +5,12 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.store.SqlTracker;
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import static org.hamcrest.Matchers.is;
@@ -53,6 +53,18 @@ public class SqlTrackerTest {
     }
 
     @Test
+    public void whenDeleteInDB() {
+        var tracker = new SqlTracker(connection);
+        Item item = new Item("bug");
+        List<Item> expected = new ArrayList<>();
+        expected.add(item);
+        tracker.add(item);
+        assertThat(tracker.findAll(), is(expected));
+        assertTrue(tracker.delete(item.getId()));
+        assertThat(tracker.findAll(), is(List.of()));
+    }
+
+    @Test
     public void whenAddItemThenReplaceAndFindByGeneratedIdThenMustBeNull() {
         var tracker = new SqlTracker(connection);
         var item = new Item("item");
@@ -91,9 +103,9 @@ public class SqlTrackerTest {
     @Test
     public void whenAddItemsAndThenFindItByName() {
         var tracker = new SqlTracker(connection);
-        tracker.add(new Item("item1", 0));
-        tracker.add(new Item("item2", 0));
-        tracker.add(new Item("item1", 0));
+        tracker.add(new Item(0, "item1"));
+        tracker.add(new Item(0, "item2"));
+        tracker.add(new Item(0, "item1"));
         var rsl = tracker.findByName("item1");
         assertEquals(2, rsl.size());
         for (var item : rsl) {
