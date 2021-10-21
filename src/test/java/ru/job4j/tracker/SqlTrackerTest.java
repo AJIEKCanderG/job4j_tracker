@@ -93,24 +93,27 @@ public class SqlTrackerTest {
     @Test
     public void whenAddItemAndFindAllGeneratedIdThenMustBeTheSame() {
         SqlTracker tracker = new SqlTracker(connection);
-        tracker.add(new Item("item1"));
-        tracker.add(new Item("item2"));
-        for (var i = 0; i < tracker.findAll().size(); i++) {
-            assertEquals(String.format("item%d", (i + 1)), tracker.findAll().get(i).getName());
-        }
+        Item item1 = new Item("item1");
+        Item item2 = new Item("item2");
+        tracker.add(item1);
+        tracker.add(item2);
+        List<Item> expected = List.of(item1, item2);
+        List<Item> result = tracker.findAll();
+        assertThat(result, is(expected));
     }
 
     @Test
     public void whenAddItemsAndThenFindItByName() {
-        var tracker = new SqlTracker(connection);
-        tracker.add(new Item(0, "item1"));
-        tracker.add(new Item(0, "item2"));
-        tracker.add(new Item(0, "item1"));
-        var rsl = tracker.findByName("item1");
-        assertEquals(2, rsl.size());
-        for (var item : rsl) {
-            assertEquals("item1", item.getName());
-        }
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item1 = new Item("item1");
+        Item item2 = new Item("item2");
+        Item item3 = new Item("item3");
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+        List<Item> expected = List.of(item2);
+        List<Item> result = tracker.findByName("item2");
+        assertThat(result, is(expected));
     }
 
 }

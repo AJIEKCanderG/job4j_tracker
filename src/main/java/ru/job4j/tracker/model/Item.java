@@ -1,7 +1,6 @@
 package ru.job4j.tracker.model;
 
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -53,7 +52,8 @@ public class Item {
 
     @Override
     public String toString() {
-        return String.format("id: %s, name: %s, created: %s", id, name, FORMATTER.format(created));
+        return String.format("id: %s, name: %s, created: %s",
+                id, name, FORMATTER.format(created.withNano(0)));
     }
 
     @Override
@@ -65,11 +65,12 @@ public class Item {
             return false;
         }
         Item item = (Item) o;
-        return Objects.equals(id, item.id) && Objects.equals(name, item.name);
+        return id == item.id && Objects.equals(name, item.name)
+                && Objects.equals(created.withNano(0), item.created.withNano(0));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, created);
     }
 }
