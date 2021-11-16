@@ -1,4 +1,5 @@
 [![Build Status](https://www.travis-ci.com/AJIEKCanderG/job4j_tracker.svg?branch=master)](https://www.travis-ci.com/AJIEKCanderG/job4j_tracker)
+[![Java CI with Maven](https://github.com/AJIEKCanderG/job4j_tracker/actions/workflows/maven.yml/badge.svg)](https://github.com/AJIEKCanderG/job4j_tracker/actions/workflows/maven.yml)
 [![codecov](https://codecov.io/gh/AJIEKCanderG/job4j_tracker/branch/master/graph/badge.svg?token=L1XV27OSTI)](https://codecov.io/gh/AJIEKCanderG/job4j_tracker)
 
 ## Стажировка Jobj4
